@@ -1,5 +1,5 @@
 //
-//  MovieCell.swift
+//  GameCell.swift
 //  Flicks
 //
 //  Created by Alex Ritchey on 9/14/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieCell: UITableViewCell {
+class GameCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!

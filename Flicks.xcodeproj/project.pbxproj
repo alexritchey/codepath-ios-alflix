@@ -10,14 +10,15 @@
 		AE004F59267635D07511BF15 /* Pods_FlicksUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F7628E26D484F8A164FB13 /* Pods_FlicksUITests.framework */; };
 		B92D4F70FDBA77A30B4A399C /* Pods_FlicksTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98ED68E21E90AA6590021157 /* Pods_FlicksTests.framework */; };
 		C856164A1F67769100197B7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85616491F67769100197B7B /* AppDelegate.swift */; };
-		C856164C1F67769100197B7B /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C856164B1F67769100197B7B /* MoviesViewController.swift */; };
+		C856164C1F67769100197B7B /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C856164B1F67769100197B7B /* GamesViewController.swift */; };
 		C856164F1F67769100197B7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C856164D1F67769100197B7B /* Main.storyboard */; };
 		C85616511F67769100197B7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C85616501F67769100197B7B /* Assets.xcassets */; };
 		C85616541F67769100197B7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C85616521F67769100197B7B /* LaunchScreen.storyboard */; };
 		C856165F1F67769100197B7B /* FlicksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C856165E1F67769100197B7B /* FlicksTests.swift */; };
 		C856166A1F67769100197B7B /* FlicksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85616691F67769100197B7B /* FlicksUITests.swift */; };
-		C8DAD7CD1F6B43CB00D04E8C /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DAD7CC1F6B43CA00D04E8C /* MovieCell.swift */; };
-		C8E092791F68BFBD00C8F5F2 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E092781F68BFBD00C8F5F2 /* Movie.swift */; };
+		C8C0127A1F6B4CF500EABDBB /* GameDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C012791F6B4CF500EABDBB /* GameDetailsViewController.swift */; };
+		C8DAD7CD1F6B43CB00D04E8C /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DAD7CC1F6B43CA00D04E8C /* GameCell.swift */; };
+		C8E092791F68BFBD00C8F5F2 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E092781F68BFBD00C8F5F2 /* Game.swift */; };
 		E01CC3F0D57CAFFB552CEA85 /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDE87EA75000D894313DFBC1 /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +49,7 @@
 		BDE87EA75000D894313DFBC1 /* Pods_Flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C85616461F67769100197B7B /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C85616491F67769100197B7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C856164B1F67769100197B7B /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
+		C856164B1F67769100197B7B /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
 		C856164E1F67769100197B7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C85616501F67769100197B7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C85616531F67769100197B7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,8 +60,9 @@
 		C85616651F67769100197B7B /* FlicksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlicksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C85616691F67769100197B7B /* FlicksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlicksUITests.swift; sourceTree = "<group>"; };
 		C856166B1F67769100197B7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C8DAD7CC1F6B43CA00D04E8C /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
-		C8E092781F68BFBD00C8F5F2 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		C8C012791F6B4CF500EABDBB /* GameDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
+		C8DAD7CC1F6B43CA00D04E8C /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		C8E092781F68BFBD00C8F5F2 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		D26BC9C4E69AB5769C15EC4B /* Pods-FlicksTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlicksTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlicksTests/Pods-FlicksTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD0D3CAE47BA730C032E310B /* Pods-FlicksUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlicksUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlicksUITests/Pods-FlicksUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,7 +150,7 @@
 				C85616501F67769100197B7B /* Assets.xcassets */,
 				C85616521F67769100197B7B /* LaunchScreen.storyboard */,
 				C85616551F67769100197B7B /* Info.plist */,
-				C8E092781F68BFBD00C8F5F2 /* Movie.swift */,
+				C8E092781F68BFBD00C8F5F2 /* Game.swift */,
 			);
 			path = Flicks;
 			sourceTree = "<group>";
@@ -174,7 +176,7 @@
 		C8DAD7CB1F6B43B300D04E8C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C8DAD7CC1F6B43CA00D04E8C /* MovieCell.swift */,
+				C8DAD7CC1F6B43CA00D04E8C /* GameCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -182,7 +184,8 @@
 		C8DAD7CE1F6B43DA00D04E8C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C856164B1F67769100197B7B /* MoviesViewController.swift */,
+				C856164B1F67769100197B7B /* GamesViewController.swift */,
+				C8C012791F6B4CF500EABDBB /* GameDetailsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -483,10 +486,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C856164C1F67769100197B7B /* MoviesViewController.swift in Sources */,
+				C8C0127A1F6B4CF500EABDBB /* GameDetailsViewController.swift in Sources */,
+				C856164C1F67769100197B7B /* GamesViewController.swift in Sources */,
 				C856164A1F67769100197B7B /* AppDelegate.swift in Sources */,
-				C8DAD7CD1F6B43CB00D04E8C /* MovieCell.swift in Sources */,
-				C8E092791F68BFBD00C8F5F2 /* Movie.swift in Sources */,
+				C8DAD7CD1F6B43CB00D04E8C /* GameCell.swift in Sources */,
+				C8E092791F68BFBD00C8F5F2 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
