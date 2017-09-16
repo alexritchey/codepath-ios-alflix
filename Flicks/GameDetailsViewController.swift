@@ -12,11 +12,27 @@ import AFNetworking
 class GameDetailsViewController: UIViewController {
 
     var posterURL: URL?
+    var summary: String!
+    var gameTitle: String!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var detailsPosterImage: UIImageView!
+    @IBOutlet weak var summaryLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        titleLabel.text = gameTitle
+        
+        summaryLabel.text = summary
+        summaryLabel.sizeToFit()
+        
+        // Configure scrollView
+        let contentWidth = scrollView.bounds.width
+        let contentHeight = scrollView.bounds.height * 3
+        scrollView.contentSize = CGSize(width: contentWidth, height: contentHeight)
+        
         detailsPosterImage.setImageWith(posterURL!)
         // Do any additional setup after loading the view.
     }

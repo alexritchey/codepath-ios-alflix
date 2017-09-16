@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -18,6 +19,7 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var games: [Game]?
 
     @IBOutlet weak var gameTableView: UITableView!
+    @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +40,17 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.didReceiveMemoryWarning()
     }
     
+    
+    // Segue to Details
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! GameDetailsViewController
         let indexPath = gameTableView.indexPath(for: sender as! UITableViewCell)
         let idx: Int! = indexPath?.row
         let game = games![idx]
         
+        vc.gameTitle = game.title
         vc.posterURL = game.posterURL
+        vc.summary = game.overview
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,6 +59,7 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return games?.count ?? 0
     }
     
+    // Table Cell Configuration
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let game = games![indexPath.row]
@@ -82,6 +89,7 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             delegateQueue: OperationQueue.main
         )
 
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         let task = session.dataTask(with: request) { (maybeData, response, error) in
             if let data = maybeData {
                 let obj = try! JSONSerialization.jsonObject(with: data, options: [])
@@ -90,7 +98,11 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         return Game(gameDict: game)
                     })
                 }
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.errorLabel.isHidden = true
                 self.gameTableView.reloadData()
+            } else {
+                self.errorLabel.isHidden = false
             }
         }
 
@@ -118,8 +130,10 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     })
                 }
                 self.gameTableView.reloadData()
-                
                 refreshControl.endRefreshing()
+                self.errorLabel.isHidden = true
+            } else {
+                self.errorLabel.isHidden = false
             }
         }
         

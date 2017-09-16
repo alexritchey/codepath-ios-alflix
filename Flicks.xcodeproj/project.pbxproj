@@ -16,9 +16,9 @@
 		C85616541F67769100197B7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C85616521F67769100197B7B /* LaunchScreen.storyboard */; };
 		C856165F1F67769100197B7B /* FlicksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C856165E1F67769100197B7B /* FlicksTests.swift */; };
 		C856166A1F67769100197B7B /* FlicksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85616691F67769100197B7B /* FlicksUITests.swift */; };
-		C8C0127A1F6B4CF500EABDBB /* GameDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C012791F6B4CF500EABDBB /* GameDetailsViewController.swift */; };
 		C8DAD7CD1F6B43CB00D04E8C /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DAD7CC1F6B43CA00D04E8C /* GameCell.swift */; };
 		C8E092791F68BFBD00C8F5F2 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E092781F68BFBD00C8F5F2 /* Game.swift */; };
+		C8E214AF1F6DB8F90018527E /* GameDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E214AE1F6DB8F90018527E /* GameDetailsViewController.swift */; };
 		E01CC3F0D57CAFFB552CEA85 /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDE87EA75000D894313DFBC1 /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,9 +60,9 @@
 		C85616651F67769100197B7B /* FlicksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlicksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C85616691F67769100197B7B /* FlicksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlicksUITests.swift; sourceTree = "<group>"; };
 		C856166B1F67769100197B7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C8C012791F6B4CF500EABDBB /* GameDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
 		C8DAD7CC1F6B43CA00D04E8C /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		C8E092781F68BFBD00C8F5F2 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		C8E214AE1F6DB8F90018527E /* GameDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
 		D26BC9C4E69AB5769C15EC4B /* Pods-FlicksTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlicksTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlicksTests/Pods-FlicksTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD0D3CAE47BA730C032E310B /* Pods-FlicksUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlicksUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlicksUITests/Pods-FlicksUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,8 +184,8 @@
 		C8DAD7CE1F6B43DA00D04E8C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C8E214AE1F6DB8F90018527E /* GameDetailsViewController.swift */,
 				C856164B1F67769100197B7B /* GamesViewController.swift */,
-				C8C012791F6B4CF500EABDBB /* GameDetailsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -469,10 +469,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Flicks/Pods-Flicks-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -486,9 +488,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8C0127A1F6B4CF500EABDBB /* GameDetailsViewController.swift in Sources */,
 				C856164C1F67769100197B7B /* GamesViewController.swift in Sources */,
 				C856164A1F67769100197B7B /* AppDelegate.swift in Sources */,
+				C8E214AF1F6DB8F90018527E /* GameDetailsViewController.swift in Sources */,
 				C8DAD7CD1F6B43CB00D04E8C /* GameCell.swift in Sources */,
 				C8E092791F68BFBD00C8F5F2 /* Game.swift in Sources */,
 			);
