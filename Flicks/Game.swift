@@ -15,8 +15,8 @@ class Game: NSObject {
     var posterURL: URL
     
     init(gameDict: NSDictionary!) {
-        title = gameDict["name"] as! String
-        overview = gameDict["summary"] as! String
+        title = gameDict["name"] as? String ?? ""
+        overview = gameDict["summary"] as? String ?? ""
         var coverPath: String
         
         if let coverDict = gameDict["cover"] as? [String:AnyObject] {
@@ -26,7 +26,6 @@ class Game: NSObject {
         } else {
             posterURL = URL(string: "https://images.igdb.com/igdb/image/upload/t_cover_big/o1yenovvskchtjrl48v5.jpg")!
         }
-
     }
     
 }

@@ -19,6 +19,7 @@ class GameDetailsViewController: UIViewController {
     @IBOutlet weak var detailsPosterImage: UIImageView!
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var infoView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,8 @@ class GameDetailsViewController: UIViewController {
         
         // Configure scrollView
         let contentWidth = scrollView.bounds.width
-        let contentHeight = scrollView.bounds.height * 3
+        let contentHeight = infoView.frame.origin.y + infoView.frame.height + 20
+
         scrollView.contentSize = CGSize(width: contentWidth, height: contentHeight)
         
         detailsPosterImage.setImageWith(posterURL!)

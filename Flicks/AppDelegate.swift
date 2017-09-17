@@ -16,6 +16,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        // Override for Tab Bar
+        // Reference a UIWindow
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        // Reference to Main.storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: type(of: self)))
+        
+        
+        // Popular View
+        let popularNavigationController = storyboard.instantiateViewController(withIdentifier:"GamesNavigationController") as! UINavigationController
+        let popularViewController = popularNavigationController.topViewController as! GamesViewController
+        popularViewController.endpoint = "?fields=name,popularity,summary,cover&order=popularity:desc"
+        popularNavigationController.tabBarItem.title = "Popular"
+        popularNavigationController.tabBarItem.image = UIImage(named: "gamepad")
+        
+        
+        // Top Rated View
+        let topRatedNavigationController = storyboard.instantiateViewController(withIdentifier: "GamesNavigationController") as! UINavigationController
+        let topRatedViewController = topRatedNavigationController.topViewController as! GamesViewController
+        topRatedViewController.endpoint = "?fields=name,summary,cover&order=aggregated_rating:desc"
+        topRatedNavigationController.tabBarItem.title = "Top Rated"
+        topRatedNavigationController.tabBarItem.image = UIImage(named: "star")
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [popularNavigationController, topRatedNavigationController]
+        
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

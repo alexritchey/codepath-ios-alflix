@@ -12,9 +12,8 @@ import MBProgressHUD
 
 class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    let endpoint: String! = "now_playing"
+    var endpoint: String!
     let apiKey = "4114a5b37eacab862e1924b0ffb9ae8e"
-    let apiUrl: URL! = URL(string: "https://api-2445582011268.apicast.io/games/?fields=name,popularity,summary,cover&order=popularity:desc")
     
     var games: [Game]?
 
@@ -79,7 +78,10 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // TODO: Refactor loadData and refreshData to use a common function
     func loadData() {
-        var request = URLRequest(url: apiUrl)
+        let urlString = "https://api-2445582011268.apicast.io/games/\(endpoint!)"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
         request.addValue(apiKey, forHTTPHeaderField: "user-key")
         request.addValue("application/json", forHTTPHeaderField: "Accepts")
         
@@ -111,7 +113,8 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // TODO: Refactor loadData and refreshData to use a common function
     func refreshData(_ refreshControl: UIRefreshControl) {
-        var request = URLRequest(url: apiUrl)
+        let url = URL(string: "https://api-2445582011268.apicast.io/games/\(endpoint!)")
+        var request = URLRequest(url: url!)
         request.addValue(apiKey, forHTTPHeaderField: "user-key")
         request.addValue("application/json", forHTTPHeaderField: "Accepts")
         
