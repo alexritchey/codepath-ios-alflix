@@ -10,15 +10,18 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     var endpoint: String!
     let apiKey = "4114a5b37eacab862e1924b0ffb9ae8e"
     
     var games: [Game]?
+    var filteredGames: [Game]?
 
     @IBOutlet weak var gameTableView: UITableView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var viewPicker: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,16 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         gameTableView.delegate = self
         gameTableView.dataSource = self
+        
+        searchBar.delegate = self
+        
+        filteredGames = games
+        
+        if (viewPicker.selectedSegmentIndex == 0) {
+            gameTableView.isHidden = false
+        } else if ( viewPicker.selectedSegmentIndex == 1) {
+            gameTableView.isHidden = true
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,13 +68,13 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // Return game count, if nil return 0
-        return games?.count ?? 0
+        return filteredGames?.count ?? 0
     }
     
     // Table Cell Configuration
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let game = games![indexPath.row]
+        let game = filteredGames![indexPath.row]
         // dequeueReusableCell allows app to re-use cells
         let cell = gameTableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath) as! GameCell
 
@@ -74,6 +87,14 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredGames = searchText.isEmpty ? games! : games!.filter { (item: Game) -> Bool in
+            let gameTitle = item.title
+            return gameTitle.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        }
+        gameTableView.reloadData()
     }
 
     // TODO: Refactor loadData and refreshData to use a common function
@@ -99,6 +120,7 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.games = gameDicts.map({ (game) -> Game in
                         return Game(gameDict: game)
                     })
+                    self.filteredGames = self.games
                 }
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.errorLabel.isHidden = true
@@ -131,6 +153,7 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.games = gameDicts.map({ (game) -> Game in
                         return Game(gameDict: game)
                     })
+                    self.filteredGames = self.games
                 }
                 self.gameTableView.reloadData()
                 refreshControl.endRefreshing()
@@ -143,5 +166,12 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         task.resume()
     }
 
+    @IBAction func viewPickerChanged(_ sender: Any) {
+        if (viewPicker.selectedSegmentIndex == 0) {
+            gameTableView.isHidden = false
+        } else if ( viewPicker.selectedSegmentIndex == 1) {
+            gameTableView.isHidden = true
+        }
+    }
 }
 
