@@ -10,7 +10,7 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
 
     var endpoint: String!
     let apiKey = "4114a5b37eacab862e1924b0ffb9ae8e"
@@ -22,6 +22,7 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var viewPicker: UISegmentedControl!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +38,19 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         gameTableView.delegate = self
         gameTableView.dataSource = self
         
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         searchBar.delegate = self
         
         filteredGames = games
         
         if (viewPicker.selectedSegmentIndex == 0) {
+            collectionView.isHidden = true
             gameTableView.isHidden = false
         } else if ( viewPicker.selectedSegmentIndex == 1) {
             gameTableView.isHidden = true
+            collectionView.isHidden = false
         }
     }
 
@@ -56,7 +62,17 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // Segue to Details
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! GameDetailsViewController
-        let indexPath = gameTableView.indexPath(for: sender as! UITableViewCell)
+        var indexPath: IndexPath!
+        
+        switch viewPicker.selectedSegmentIndex {
+            case 0:
+                indexPath = gameTableView.indexPath(for: sender as! UITableViewCell)
+            case 1:
+                indexPath = collectionView.indexPath(for: sender as! UICollectionViewCell)
+            default:
+                return
+        }
+
         let idx: Int! = indexPath?.row
         let game = games![idx]
         
@@ -80,7 +96,26 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         cell.titleLabel.text = game.title
         cell.overviewLabel.text = game.overview
-        cell.posterView.setImageWith(game.posterURL)
+
+        let imageRequest = URLRequest(url: game.posterURL)
+        
+        cell.posterView.setImageWith(
+            imageRequest,
+            placeholderImage: nil,
+            success: { (imageRequest, imageResponse, image) in
+                // imageResponse will be nil if the image is cached
+                if imageResponse != nil {
+                    cell.posterView.alpha = 0.0
+                    cell.posterView.image = image
+                    UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                        cell.posterView.alpha = 1.0
+                    })
+                } else {
+                    cell.posterView.image = image
+                }
+            }) { (imageRequests, imageResponse, error) in
+                print(error)
+        }
         
         return cell
     }
@@ -95,6 +130,21 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             return gameTitle.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
         gameTableView.reloadData()
+    }
+    
+    
+    // Configure Collection View
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let game = filteredGames![indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCollectionCell", for: indexPath) as! GameCollectionViewCell
+        
+        cell.gameCover.setImageWith(game.posterURL)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return filteredGames?.count ?? 0
     }
 
     // TODO: Refactor loadData and refreshData to use a common function
@@ -168,9 +218,13 @@ class GamesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBAction func viewPickerChanged(_ sender: Any) {
         if (viewPicker.selectedSegmentIndex == 0) {
+            collectionView.isHidden = true
             gameTableView.isHidden = false
+            gameTableView.reloadData()
         } else if ( viewPicker.selectedSegmentIndex == 1) {
             gameTableView.isHidden = true
+            collectionView.isHidden = false
+            collectionView.reloadData()
         }
     }
 }
